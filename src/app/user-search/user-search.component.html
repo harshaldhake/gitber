@@ -1,0 +1,38 @@
+
+<p-panel header="User Search" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+  <div class="card" fxLayoutAlign="start center">
+      <form [formGroup]="searchForm" (ngSubmit)="Search(searchForm.value)">
+          <div fxLayout="row" fxLayoutAlign="start start">
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <div fxLayout="row">
+                    <input type="text" pInputText formControlName="username" placeholder="Please enter user name for search " name="username" class="ui-inputtext">
+                </div>
+            
+                <button type="submit" [disabled]="!searchForm.valid" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+                        <div class="ui-button-text ui-c" >Go!</div>
+                </button>
+            </div> 
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div class="hint-align" *ngIf="!searchForm.controls['username'].valid&&searchForm.controls['username'].dirty">Please enter User name to search.</div>
+            </div>
+      </form>
+  </div>
+
+  <div class="card" fxLayoutAlign="start center" style="padding-top: 30px;">
+      <div fxLayout="column" *ngFor="let recentSearches of recentSearchArray; let i = index">
+            <div fxLayout="column">
+                    <div fxLayout="row">
+                        <a style="min-width: 250px;" href="#" (click)="callNewUser(recentSearches)">{{recentSearches}}</a> 
+                        <button pButton type="button" (click)="deleteItem(recentSearches)" icon="fa-close" class="ui-button-danger"></button>  
+                    </div>
+            </div>
+      </div>
+  </div>
+
+</p-panel>
+
+<div fxLayoutAlign="center center">
+     <p-growl [(value)]="msgs"></p-growl>
+ </div>
+    

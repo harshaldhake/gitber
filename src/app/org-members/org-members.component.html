@@ -1,0 +1,35 @@
+
+<p-panel header="Organization Member Search" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+    <div class="card" fxLayoutAlign="start center" style="min-height: 50px;">
+        <form [formGroup]="searchForm" (ngSubmit)="Search(searchForm.value)">
+            <div fxLayout="row" fxLayoutAlign="start start">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                  <div fxLayout="row">
+                      <input type="text" pInputText formControlName="username" placeholder="Please enter organization for search " name="username" class="ui-inputtext">
+                  </div>
+                  
+              
+                  <button type="submit" [disabled]="!searchForm.valid" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+                          <div class="ui-button-text ui-c" >Go!</div>
+                  </button>
+              </div> 
+              </div>
+              <div fxLayout="row" fxLayoutAlign="start start">
+                  <div class="hint-align" *ngIf="!searchForm.controls['username'].valid&&searchForm.controls['username'].dirty">Please enter User name to search.</div>
+              </div>
+        </form>
+    </div>
+
+    <div *ngIf="orgMembers.length > 0">
+        <p-dataScroller [value]="orgMembers" [rows]="10" [inline]="true" scrollHeight="500px">
+                <p-header>
+                    {{searchForm.value.username}} Members
+                </p-header>
+                <ng-template let-member pTemplate="item">
+                    <div fxlayout="column">
+                        <a href="#" (click)="callNewUser(member.username)"> {{member.username}} </a>
+                    </div>
+                </ng-template>
+        </p-dataScroller>
+    </div>
+  </p-panel>

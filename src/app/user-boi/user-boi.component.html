@@ -1,0 +1,34 @@
+
+<p-panel header="User Bio" [toggleable]="true" [style]="{'margin-bottom':'20px'}">
+    <div fxLayout="row">
+        <div fxLayout="column" fxLayoutAlign="start start">
+            <div fxLayout="row">
+            <div class="user-bio-row"> <b>Name</b> </div>
+            <div> <i>{{userinfo.name}}</i></div>
+            </div>
+            <div fxLayout="row">
+                <div class="user-bio-row"> <b>User Name</b></div>
+                <div> <i>{{userinfo.username}}</i></div>
+            </div>
+            <div fxLayout="row">
+                <div class="user-bio-row"> <b>Company</b>  </div>
+                <div> <i>{{userinfo.company}}</i></div>
+            </div>
+            <div fxLayout="row">
+                <div class="user-bio-row"><b>Repos</b></div>
+                <div> <i>{{userinfo.repos}}</i></div>
+            </div>
+            <div fxLayout="row">
+                <div class="user-bio-row"> <b>Followers</b> </div>
+                <div><i>{{userinfo.followers}}</i> </div>
+            </div>
+            <div fxLayout="row">
+                <div class="user-bio-row">  <b>Joined On</b></div>
+                <div> <i>{{userinfo.created_at | date}}</i></div>  
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="end end" style="padding-left: 30px">
+            <img src="{{userinfo.avatar}}" style="width: 100px; height: 100px;">
+        </div>
+    </div>
+</p-panel>
